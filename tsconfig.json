@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "baseUrl": ".",
+    "strict": false,
+    "target": "es5",
+    "allowJs": true,
+    "jsx": "preserve",
+    "module": "esnext",
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "types": ["node", "react"],
+    "paths": {
+      "@pages/*": ["pages/*"],
+      "@components/*": ["components/*"]
+    },
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+}
