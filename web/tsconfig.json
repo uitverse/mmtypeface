@@ -2,7 +2,7 @@
   "compilerOptions": {
     "noEmit": true,
     "baseUrl": ".",
-    "strict": false,
+    "strict": true,
     "target": "es5",
     "allowJs": true,
     "jsx": "preserve",
