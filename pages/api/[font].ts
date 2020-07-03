@@ -16,7 +16,7 @@ export default async (
 
   if (fonts.includes(font as string)) {
 //     const css = await readFile(`fonts/${font}.css`, 'utf-8')
-    res.end(css)
+    res.end(font)
   } else {
     res.end(`Font not Found! ${font}`)
   }
