@@ -1,19 +1,15 @@
-interface FontFamily {
-  family: string;
-  fonts: Array<Font>;
+import type { FontFamily, Font } from "./types/index.d.ts";
+
+/// take [input] which is an encoded string and parse font properties from it
+export default function parse(input: string): object {
+  /// this is to be able to catch circular/recursive input
+  return JSON.parse(JSON.stringify(__parse__(input)));
 }
 
-interface Font {
-  weight: string;
-  style: string;
-}
-
-function __parse__(input: string): FontFamily | null {
-  const fullPattern = new RegExp(
-    /^([^@:]*)(?:(?:\:)?([\w+\,]*)(?:@)([^@]*))?$/g
-  );
+function __parse__(input: string): FontFamily {
+  const pattern = new RegExp(/^([^@:]*)(?:(?:\:)?([\w+\,]*)(?:@)([^@]*))?$/g);
   const [, family, keyPair, valuePairSet]: Array<string> =
-    fullPattern.exec(input.trim()) || new Array(4).fill(null);
+    pattern.exec(input.trim()) || new Array(4).fill(null);
   const valuePair = valuePairSet?.split(";");
   if (!keyPair || !valuePair) {
     return {
@@ -26,7 +22,6 @@ function __parse__(input: string): FontFamily | null {
     const fonts: Array<Font> = entries.map((values) => {
       let style = "normal";
       let weight = "normal";
-
       values.forEach((v, i) => {
         if (keys[i] === "ital") {
           style = !!parseInt(v) ? "italic" : "normal";
@@ -34,20 +29,14 @@ function __parse__(input: string): FontFamily | null {
           weight = v;
         }
       });
-
       return {
         style,
         weight,
       };
     });
-
     return {
       family: family.replace("+", " "),
       fonts: fonts,
     };
   }
-}
-
-export default function parse(input: string): object {
-  return JSON.parse(JSON.stringify(__parse__(input)));
 }
