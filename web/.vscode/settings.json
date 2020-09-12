@@ -1,8 +1,0 @@
-{
-  "css.validate": false,
-  "eslint.run": "onSave",
-  "stylelint.enable": true,
-  "editor.formatOnSave": true,
-  "editor.autoClosingBrackets": "always",
-  "deno.enable": false
-}
