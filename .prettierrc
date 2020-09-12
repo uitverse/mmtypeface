@@ -1,5 +1,8 @@
 {
-  "singleQuote": true,
   "semi": false,
-  "jsxBracketSameLine": true
+  "tabWidth": 2,
+  "endOfLine": "lf",
+  "singleQuote": true,
+  "jsxBracketSameLine": true,
+  "plugins": ["./node_modules/prettier-plugin-import-sort/src"]
 }
