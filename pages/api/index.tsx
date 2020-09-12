@@ -1,9 +1,12 @@
-import decodeFamily from '@lib/decode_family'
+import decode from '@lib/decode'
+import { Display, isDisplay } from '@lib/display'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default function API(req: NextApiRequest, res: NextApiResponse): void {
-  const families = req.query.family as string | Array<string>
-  const display = (req.query.display as string) ?? 'swap'
+  const families = req.query.family ? decode(req.query.family) : []
+  const display: Display = isDisplay(req.query.display)
+    ? req.query.display
+    : 'swap'
 
-  res.status(200).json({ families: decodeFamily(families), display })
+  res.status(200).json({ families, display })
 }

@@ -1,13 +1,13 @@
-import type { Font, FontFamily } from './decode_family.interface'
+import type { Font, FontFamily } from './decode.interface'
 
 /// take [input] which is an encoded string or an array of ones and parse font properties from it
-export default function decodeFamily(input: string | Array<string>): object {
+export default function decode(input: string | Array<string>): object {
   /// this is to be able to catch circular/recursive input
   try {
     if (input instanceof Array) {
-      return JSON.parse(JSON.stringify(input.map(__parse__)))
+      return JSON.parse(JSON.stringify(input.map(parse)))
     } else {
-      return JSON.parse(JSON.stringify([__parse__(input)]))
+      return JSON.parse(JSON.stringify([parse(input)]))
     }
   } catch (e) {
     console.error(e)
@@ -15,7 +15,7 @@ export default function decodeFamily(input: string | Array<string>): object {
   }
 }
 
-function __parse__(input: string): FontFamily {
+function parse(input: string): FontFamily {
   const pattern = /^([^@:]*)(?:(?:\:)?([\w+\,]*)(?:@)([^@]*))?$/g
 
   const [, family, keyPair, valuePairSet]: Array<string> =
@@ -30,9 +30,11 @@ function __parse__(input: string): FontFamily {
   } else {
     const keys = keyPair?.split(',')
     const entries = valuePair.map((x) => x.split(','))
+
     const fonts: Array<Font> = entries.map((values) => {
       let style = 'normal'
       let weight = 'normal'
+
       values.forEach((v, i) => {
         if (keys[i] === 'ital') {
           style = !!parseInt(v) ? 'italic' : 'normal'
@@ -40,11 +42,13 @@ function __parse__(input: string): FontFamily {
           weight = v
         }
       })
+
       return {
         style,
         weight,
       }
     })
+
     return {
       family: family.replace('+', ' '),
       fonts: fonts,
