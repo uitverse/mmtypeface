@@ -1,4 +1,4 @@
-import type { Font, FontFamily } from './decode.interface'
+import type { Font, FontFamily } from '@lib/decode.interface'
 
 /// take [input] which is an encoded string or an array of ones and parse font properties from it
 export default function decode(
