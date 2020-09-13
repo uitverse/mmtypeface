@@ -1,7 +1,7 @@
 import type { FontFamily } from '@lib/decode.interface'
-import data from 'fonts.yaml'
 
 export default function* search(
+  data: Array<FontFamily<0>>,
   families: Array<FontFamily>
 ): Generator<FontFamily<0>> {
   for (const { family, fonts } of families) {
