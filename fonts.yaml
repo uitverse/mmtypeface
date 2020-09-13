@@ -1,0 +1,16 @@
+- family: Padauk
+  fonts:
+    - weight: '400'
+      style: normal
+      urls:
+        - format: woff
+          path: absolute-path-to-font
+        - format: woff2
+          path: absolute-path-to-font
+    - weight: '700'
+      style: normal
+      urls:
+        - format: woff
+          path: absolute-path-to-font
+        - format: woff2
+          path: absolute-path-to-font

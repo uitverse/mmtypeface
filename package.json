@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next export"
   },
   "importSort": {
     ".js, .jsx, .ts, .tsx": {
@@ -16,6 +17,8 @@
   "dependencies": {
     "autoprefixer": "^9.8.6",
     "next": "9.5.3",
+    "next-compose-plugins": "^2.2.0",
+    "next-plugin-yaml": "^1.0.1",
     "postcss-import": "^12.0.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
