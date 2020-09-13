@@ -1,13 +1,15 @@
 import type { Font, FontFamily } from './decode.interface'
 
 /// take [input] which is an encoded string or an array of ones and parse font properties from it
-export default function decode(input: string | Array<string>): object {
+export default function decode(
+  input: string | Array<string>
+): Array<FontFamily> {
   /// this is to be able to catch circular/recursive input
   try {
     if (input instanceof Array) {
-      return JSON.parse(JSON.stringify(input.map(parse)))
+      return JSON.parse(JSON.stringify(input.map(parse))) as Array<FontFamily>
     } else {
-      return JSON.parse(JSON.stringify([parse(input)]))
+      return JSON.parse(JSON.stringify([parse(input)])) as Array<FontFamily>
     }
   } catch (e) {
     console.error(e)
