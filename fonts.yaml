@@ -4,13 +4,13 @@
       style: normal
       urls:
         - format: woff
-          path: absolute-path-to-font
+          path: 'Padauk/Padauk-Regular.woff'
         - format: woff2
-          path: absolute-path-to-font
+          path: 'Padauk/Padauk-Regular.woff2'
     - weight: '700'
       style: normal
       urls:
         - format: woff
-          path: absolute-path-to-font
+          path: 'Padauk/Padauk-Bold.woff'
         - format: woff2
-          path: absolute-path-to-font
+          path: 'Padauk/Padauk-Bold.woff2'
