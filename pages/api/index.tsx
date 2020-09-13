@@ -1,6 +1,7 @@
 import decode from '@lib/decode'
 import { Display, isDisplay } from '@lib/display'
 import search from '@lib/search'
+import transform from '@lib/transform'
 import data from 'fonts.yaml'
 import { NextApiRequest, NextApiResponse } from 'next'
 
@@ -10,7 +11,5 @@ export default function API(req: NextApiRequest, res: NextApiResponse): void {
     ? req.query.display
     : 'swap'
 
-  res
-    .status(200)
-    .json({ families: Array.from(search(data, families)), display })
+  res.status(200).end(transform(Array.from(search(data, families)), display))
 }
