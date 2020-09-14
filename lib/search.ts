@@ -2,16 +2,20 @@ import type { FontFamily } from '@lib/decode.interface'
 
 export default function* search(
   data: Array<FontFamily<0>>,
-  families: Array<FontFamily>
+  input: Array<FontFamily>
 ): Generator<FontFamily<0>> {
-  for (const { family, fonts } of families) {
-    for (const result of data.filter((x) => x.family === family)) {
-      for (const font of fonts) {
-        yield {
-          family: result.family,
-          fonts: result.fonts.filter(
-            (x) => x.weight === font.weight && x.style === font.style
-          ),
+  for (const i of input) {
+    for (const o of data.filter((x) => x.family === i.family)) {
+      if (i.fonts.length === 0) {
+        yield* data.filter((x) => x.family === i.family)
+      } else {
+        for (const font of i.fonts) {
+          yield {
+            family: o.family,
+            fonts: o.fonts.filter(
+              (x) => x.weight === font.weight && x.style === font.style
+            ),
+          }
         }
       }
     }
