@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "serve": "yarn build && yarn start"
   },
   "importSort": {
     ".js, .jsx, .ts, .tsx": {
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "autoprefixer": "^9.8.6",
+    "lru-cache": "^6.0.0",
     "next": "9.5.3",
     "next-compose-plugins": "^2.2.0",
     "next-plugin-yaml": "^1.0.1",
@@ -25,6 +26,7 @@
     "tailwindcss": "^1.8.8"
   },
   "devDependencies": {
+    "@types/lru-cache": "^5.1.0",
     "@types/node": "^14.10.1",
     "@types/react": "^16.9.49",
     "import-sort-style-module": "^6.0.0",
