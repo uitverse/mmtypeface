@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "serve": "yarn build && yarn start"
+    "serve": "yarn build && yarn start",
+    "lint": "eslint --ext .tsx,.ts ."
   },
   "importSort": {
     ".js, .jsx, .ts, .tsx": {
