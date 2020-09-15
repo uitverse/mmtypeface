@@ -1,9 +1,10 @@
 import Nav from '@components/nav'
 
-export default function Home() {
+export default function About(): JSX.Element {
   return (
     <main className="font-san shadow-border-top-brand">
-      <Nav index={0} />
+      <Nav index={1} />
+      About Page
     </main>
   )
 }
