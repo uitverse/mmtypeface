@@ -1,14 +1,14 @@
 import { GetServerSideProps } from 'next'
 
-interface SpecimenProps {
+interface SpecimenPageProps {
   slug: string
 }
 
-export default function Specimen({ slug }: SpecimenProps): JSX.Element {
+export default function SpecimenPage({ slug }: SpecimenPageProps): JSX.Element {
   return <div>Specimen {slug}</div>
 }
 
-export const getServerSideProps: GetServerSideProps<SpecimenProps> = async ({
+export const getServerSideProps: GetServerSideProps<SpecimenPageProps> = async ({
   params,
 }) => {
   return {
