@@ -16,6 +16,7 @@ export default function API(req: NextApiRequest, res: NextApiResponse): void {
 
   if (cache.has(key)) {
     res.setHeader('x-cache', 'HIT')
+    res.setHeader('Content-Type', 'text/css')
     res.status(200).send(cache.get(key))
   } else {
     try {
@@ -27,6 +28,7 @@ export default function API(req: NextApiRequest, res: NextApiResponse): void {
 
       cache.set(key, result)
       res.setHeader('x-cache', 'MISS')
+      res.setHeader('Content-Type', 'text/css')
       res.status(200).send(result)
     } catch (e) {
       res.setHeader('x-cache', 'SKIP')
