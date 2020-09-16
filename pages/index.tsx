@@ -1,6 +1,7 @@
 import Nav from '@components/nav'
 import type { FontFamily } from '@lib/decode.interface'
 import data from 'fonts.yaml'
+import Link from 'next/link'
 import { useState } from 'react'
 
 function* makeData(): Generator<FontFamily<0>> {
@@ -20,17 +21,21 @@ export default function Home(): JSX.Element {
       <div className="w-full p-4 md:pt-3 md:px-0 md:mx-auto md:max-w-4xl">
         <div className="grid grid-flow-row gap-3 md:grid-cols-3">
           {Array.from(makeData()).map(({ family, author }) => (
-            <div
-              key={family}
-              className="w-full px-4 py-3 transition duration-200 ease-in-out border-2 border-solid rounded cursor-pointer hover:shadow-lg border-gray-lighter hover:border-brand">
-              <h2 className="font-medium leading-tight text-black md:text-sm">
-                {family}
-              </h2>
-              <span className="text-sm leading-tight text-gray-darkest">
-                {author}
-              </span>
-              <div className="my-2 text-xl">{preview}</div>
-            </div>
+            <Link
+              href={`/specimen/${family.replaceAll(' ', '+')}`}
+              key={family}>
+              <a>
+                <div className="w-full px-4 py-3 transition duration-200 ease-in-out border-2 border-solid rounded cursor-pointer hover:shadow-lg border-gray-lighter hover:border-brand">
+                  <h2 className="font-medium leading-tight text-black md:text-sm">
+                    {family}
+                  </h2>
+                  <span className="text-sm leading-tight text-gray-darkest">
+                    {author}
+                  </span>
+                  <div className="my-2 text-xl">{preview}</div>
+                </div>
+              </a>
+            </Link>
           ))}
         </div>
       </div>
