@@ -1,4 +1,5 @@
 import Nav from '@components/nav'
+import { PREVIEWS } from '@lib/constants'
 import type { FontFamily } from '@lib/decode.interface'
 import data from 'fonts.yaml'
 import Link from 'next/link'
@@ -11,9 +12,7 @@ function* makeData(): Generator<FontFamily<0>> {
 }
 
 export default function Home(): JSX.Element {
-  const [preview, ,] = useState(
-    'နယူတန်သည် အိမ်မှာနေစဉ်အတွင်း သင်္ချာဘာသာရပ်ကို မပြတ်လေ့လာနေခဲ့သည်။'
-  )
+  const [preview, ,] = useState(PREVIEWS.SENTENCE)
 
   return (
     <main className="font-san shadow-border-top-brand">
