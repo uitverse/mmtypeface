@@ -1,5 +1,6 @@
 export interface FontFamily<T extends unknown = undefined> {
   family: string
+  author?: string
   fonts: Array<Font<T>>
 }
 
