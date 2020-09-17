@@ -19,7 +19,9 @@ export default class MyDocument extends Document {
   render(): JSX.Element {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <meta name="theme-color" content="#d63447" />
+        </Head>
         <body>
           <Main />
           <NextScript />
