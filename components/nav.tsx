@@ -14,11 +14,11 @@ export default function Nav({ index }: { index: number }): JSX.Element {
   return (
     <div className="flex flex-col w-full">
       <nav className="shadow-border-bottom-gray">
-        <div className="flex flex-row items-center justify-between w-full px-4 mx-auto md:max-w-4xl">
+        <div className="flex flex-row items-center justify-between w-full px-4 mx-auto md:max-w-4xl lg:max-w-screen-xl">
           <div className="flex items-center justify-start flex-1 flex-shrink-0">
             <Link href="/">
               <a>
-                <h1 className="px-2 my-4 font-semibold text-white transition duration-200 ease-in-out transform rounded md:my-0 -rotate-3 bg-brand hover:scale-110 hover:rotate-0">
+                <h1 className="px-2 my-4 text-lg font-semibold text-white transition duration-200 ease-in-out transform rounded md:my-0 -rotate-3 bg-brand hover:scale-110 hover:rotate-0">
                   mmtypeface
                 </h1>
               </a>
@@ -28,7 +28,7 @@ export default function Nav({ index }: { index: number }): JSX.Element {
             <div className="flex-1 flex-shrink-0 hidden md:block">
               <label
                 htmlFor="search"
-                className="flex flex-row items-center p-1 my-3 transition duration-200 ease-in-out border-2 border-solid rounded my-2px -mt2px border-gray-lighter bg-gray-lightest focus-within:bg-white focus-within:border-brand">
+                className="flex flex-row items-center px-1 py-2 my-4 transition duration-200 ease-in-out border-2 border-solid rounded my-2px -mt2px border-gray-lighter bg-gray-lightest focus-within:bg-white focus-within:border-brand">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -45,7 +45,7 @@ export default function Nav({ index }: { index: number }): JSX.Element {
                 <input
                   type="text"
                   id="search"
-                  className="w-full text-sm transition duration-200 ease-in-out bg-gray-lightest text-gray-darkest center focus:bg-white focus:outline-none"
+                  className="w-full transition duration-200 ease-in-out bg-gray-lightest text-gray-darkest center focus:bg-white focus:outline-none"
                   placeholder="Search for Fonts"
                   onChange={onChange}
                 />
@@ -56,7 +56,7 @@ export default function Nav({ index }: { index: number }): JSX.Element {
             <Link href="/about">
               <a
                 className={cn(
-                  'flex flex-row items-center px-3 py-4 text-sm border-b-2 border-solid focus:outline-none',
+                  'transition duration-200 ease-in-out flex flex-row items-center px-3 py-6 border-b-2 border-t-2 border-solid focus:outline-none',
                   {
                     'border-transparent hover:border-brand text-gray-darkest':
                       index !== 1,
@@ -68,7 +68,7 @@ export default function Nav({ index }: { index: number }): JSX.Element {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  className={cn('w-6 h-6 md:w-4 md:h-4 md:mr-2', {
+                  className={cn('w-6 h-6 md:w-5 md:h-5 md:mr-2', {
                     'text-gray-darker': index !== 1,
                     'text-brand': index === 1,
                   })}>
