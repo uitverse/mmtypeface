@@ -1,3 +1,4 @@
+# Padauk
 - family: Padauk
   author: SIL International
   fonts:
@@ -15,3 +16,43 @@
           path: 'Padauk/Padauk-Bold.woff'
         - format: woff2
           path: 'Padauk/Padauk-Bold.woff2'
+# Pyidaungsu
+- family: Pyidaungsu
+  author: SIL International
+  fonts:
+    - weight: '400'
+      style: normal
+      urls:
+        - format: woff
+          path: 'Pyidaungsu/Pyidaungsu-Regular.woff'
+        - format: woff2
+          path: 'Pyidaungsu/Pyidaungsu-Regular.woff2'
+    - weight: '700'
+      style: normal
+      urls:
+        - format: woff
+          path: 'Pyidaungsu/Pyidaungsu-Bold.woff'
+        - format: woff2
+          path: 'Pyidaungsu/Pyidaungsu-Bold.woff2'
+# Myanmar Khyay
+- family: Myanmar Khyay
+  author: SIL International
+  fonts:
+    - weight: '400'
+      style: normal
+      urls:
+        - format: woff
+          path: 'Myanmar+Khyay/Myanmar+Khyay-Regular.woff'
+        - format: woff2
+          path: 'Myanmar+Khyay/Myanmar+Khyay-Regular.woff2'
+# Myanmar Sans Pro
+- family: Myanmar Sans Pro
+  author: SIL International
+  fonts:
+    - weight: '400'
+      style: normal
+      urls:
+        - format: woff
+          path: 'Myanmar+Sans+Pro/Myanmar+Sans+Pro-Regular.woff'
+        - format: woff2
+          path: 'Myanmar+Sans+Pro/Myanmar+Sans+Pro-Regular.woff2'
