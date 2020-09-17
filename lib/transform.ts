@@ -19,7 +19,7 @@ function singleTransform(tree: FontFamily<0>, display: Display): string {
   for (const font of tree.fonts) {
     results.push(`@font-face {
   font-family: '${tree.family}';
-  src: ${urlsTransform(font.urls, tree.family)};
+  src: ${urlsTransform(font.urls)};
   font-weight: ${font.weight};
   font-style: ${font.style};
   font-display: ${display};
@@ -29,11 +29,10 @@ function singleTransform(tree: FontFamily<0>, display: Display): string {
   return results.join('')
 }
 
-function urlsTransform(tree: Array<FontUrl>, family: string): string {
+function urlsTransform(tree: Array<FontUrl>): string {
   const results: Array<string> = []
   const root = '/fonts'
 
-  results.push(`local('${family}')`)
   for (const fontUrl of tree) {
     results.push(`url('${root}/${fontUrl.path}') format('${fontUrl.format}')`)
   }
