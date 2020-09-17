@@ -52,6 +52,9 @@ module.exports = {
       rotate: {
         '-3': '-3deg',
       },
+      minHeight: {
+        50: '13rem',
+      },
     },
   },
   variants: {

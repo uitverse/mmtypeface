@@ -34,17 +34,6 @@
           path: 'Pyidaungsu/Pyidaungsu-Bold.woff'
         - format: woff2
           path: 'Pyidaungsu/Pyidaungsu-Bold.woff2'
-# Myanmar Khyay
-- family: Myanmar Khyay
-  author: Khmer Type
-  fonts:
-    - weight: '400'
-      style: normal
-      urls:
-        - format: woff
-          path: 'Myanmar+Khyay/Myanmar+Khyay-Regular.woff'
-        - format: woff2
-          path: 'Myanmar+Khyay/Myanmar+Khyay-Regular.woff2'
 # Myanmar Sans Pro
 - family: Myanmar Sans Pro
   author: '-'
@@ -67,3 +56,14 @@
           path: 'Tharlon/Tharlon-Regular.woff'
         - format: woff2
           path: 'Tharlon/Tharlon-Regular.woff2'
+# Myanmar Khyay
+- family: Myanmar Khyay
+  author: Khmer Type
+  fonts:
+    - weight: '400'
+      style: normal
+      urls:
+        - format: woff
+          path: 'Myanmar+Khyay/Myanmar+Khyay-Regular.woff'
+        - format: woff2
+          path: 'Myanmar+Khyay/Myanmar+Khyay-Regular.woff2'
