@@ -1,17 +1,34 @@
 import Nav from '@components/nav'
 import { PREVIEWS } from '@lib/constants'
+import { searchInputState } from '@state/atoms'
 import data from 'fonts.yaml'
+import Fuse from 'fuse.js'
 import Head from 'next/head'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil'
 
 export default function HomePage(): JSX.Element {
+  const fuse = new Fuse(data, {
+    threshold: 0.4,
+    keys: ['family'],
+  })
   const [preview, ,] = useState(PREVIEWS.SENTENCE)
+  const [fonts, setFonts] = useState(data)
+  const searchText = useRecoilValue(searchInputState)
+
+  useEffect(() => {
+    if (searchText.trim().length === 0) {
+      setFonts(data)
+    } else {
+      setFonts(fuse.search(searchText).map((x) => x.item))
+    }
+  }, [searchText])
 
   return (
     <>
       <Head>
-        {data.map(({ family }) => (
+        {fonts.map(({ family }) => (
           <link
             key={family}
             rel="stylesheet"

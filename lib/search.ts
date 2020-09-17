@@ -1,4 +1,4 @@
-import type { FontFamily } from '@lib/decode.interface'
+import type { FontFamily } from '@lib/interfaces'
 
 export default function* search(
   data: Array<FontFamily<0>>,

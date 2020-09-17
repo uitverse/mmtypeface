@@ -1,5 +1,5 @@
-import type { FontFamily, FontUrl } from '@lib/decode.interface'
 import type { Display } from '@lib/display'
+import type { FontFamily, FontUrl } from '@lib/interfaces'
 
 export default function transform(
   tree: Array<FontFamily<0>>,

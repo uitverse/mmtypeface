@@ -1,11 +1,20 @@
+import { searchInputState } from '@state/atoms'
 import cn from 'classnames'
 import Link from 'next/link'
+import { ChangeEvent } from 'react'
+import { useRecoilState } from 'recoil'
 
 export default function Nav({ index }: { index: number }): JSX.Element {
+  const [, setSearchText] = useRecoilState(searchInputState)
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value)
+  }
+
   return (
     <div className="flex flex-col w-full">
       <nav className="shadow-border-bottom-gray">
-        <div className="flex flex-row items-center justify-between w-full px-4 mx-auto md:max-w-4xl md:px-0">
+        <div className="flex flex-row items-center justify-between w-full px-4 mx-auto md:max-w-4xl">
           <div className="flex items-center justify-start flex-1 flex-shrink-0">
             <Link href="/">
               <a>
@@ -38,6 +47,7 @@ export default function Nav({ index }: { index: number }): JSX.Element {
                   id="search"
                   className="w-full text-sm transition duration-200 ease-in-out bg-gray-lightest text-gray-darkest center focus:bg-white focus:outline-none"
                   placeholder="Search for Fonts"
+                  onChange={onChange}
                 />
               </label>
             </div>
@@ -99,6 +109,7 @@ export default function Nav({ index }: { index: number }): JSX.Element {
               name="font_search"
               className="w-full transition duration-200 ease-in-out bg-gray-lightest text-gray-darkest center focus:bg-white focus:outline-none"
               placeholder="Search for Fonts"
+              onChange={onChange}
             />
           </label>
         </div>
