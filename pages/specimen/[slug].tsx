@@ -47,8 +47,8 @@ export default function SpecimenPage({ slug }: SpecimenPageProps): JSX.Element {
               <div
                 key={`${slug}_${font.weight}_${font.style}`}
                 className="flex flex-col py-5 border-b-2 border-solid border-gray-lighter">
-                <div className="flex flex-row items-center justify-between">
-                  <div className="flex flex-col">
+                <div className="flex flex-col md:items-center md:justify-between md:flex-row">
+                  <div className="flex flex-col mb-5 md:mb-0">
                     <span className="text-sm text-gray-darker">
                       {fontWeightToString(font.weight) +
                         ' ' +
