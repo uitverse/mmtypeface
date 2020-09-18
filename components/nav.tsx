@@ -1,11 +1,16 @@
-import { searchInputState } from '@state/atoms'
+import { encodedFontSelectionState, searchInputState } from '@state/atoms'
 import cn from 'classnames'
 import Link from 'next/link'
-import { ChangeEvent } from 'react'
-import { useRecoilState } from 'recoil'
+import { ChangeEvent, useEffect } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
 
 export default function Nav({ index }: { index: number }): JSX.Element {
   const [searchText, setSearchText] = useRecoilState(searchInputState)
+  const encodedSelection = useRecoilValue(encodedFontSelectionState)
+
+  useEffect(() => {
+    console.log(encodedSelection)
+  }, [encodedSelection])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value)
