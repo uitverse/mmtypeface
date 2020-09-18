@@ -5,7 +5,7 @@ import { ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
 
 export default function Nav({ index }: { index: number }): JSX.Element {
-  const [, setSearchText] = useRecoilState(searchInputState)
+  const [searchText, setSearchText] = useRecoilState(searchInputState)
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value)
@@ -48,6 +48,7 @@ export default function Nav({ index }: { index: number }): JSX.Element {
                   className="w-full transition duration-300 ease-in-out bg-gray-lightest text-gray-darkest center focus:bg-white focus:outline-none"
                   placeholder="Search for Fonts"
                   onChange={onChange}
+                  value={searchText}
                 />
               </label>
             </div>
@@ -110,6 +111,7 @@ export default function Nav({ index }: { index: number }): JSX.Element {
               className="w-full transition duration-300 ease-in-out bg-gray-lightest text-gray-darkest center focus:bg-white focus:outline-none"
               placeholder="Search for Fonts"
               onChange={onChange}
+              value={searchText}
             />
           </label>
         </div>
