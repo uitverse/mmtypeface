@@ -25,7 +25,7 @@ function parse(input: string): FontFamily {
 
   if (!keyPair || !valuePair) {
     return {
-      family: family.replace('+', ' '),
+      family: family.replace(/\+/g, ' '),
       fonts: [],
     }
   } else {
@@ -51,7 +51,7 @@ function parse(input: string): FontFamily {
     })
 
     return {
-      family: family.replace('+', ' '),
+      family: family.replace(/\+/g, ' '),
       fonts: fonts,
     }
   }

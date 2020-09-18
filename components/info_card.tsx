@@ -23,7 +23,7 @@ export default function InfoCard({
             {author}
           </span>
           <div
-            className="my-3 text-2xl"
+            className="my-3 text-xl"
             style={{
               fontFamily: family,
             }}>
