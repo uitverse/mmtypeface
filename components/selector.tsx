@@ -11,7 +11,7 @@ export default function Selector({
     <button
       onClick={onClick}
       className={cn(
-        'flex flex-row items-center justify-center px-3 py-2 font-medium transition duration-300 ease-in-out border-2 border-transparent border-solid rounded  focus:outline-none',
+        'w-32 flex flex-row items-center justify-center px-3 py-2 font-medium transition duration-300 ease-in-out border-2 border-transparent border-solid rounded  focus:outline-none',
         {
           'text-danger-dark hover:bg-danger-light focus:border-danger': value,
           'text-info-dark hover:bg-info-light focus:border-info': !value,
