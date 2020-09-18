@@ -4,9 +4,13 @@ import { PREVIEWS } from '@lib/constants'
 import fontWeightToString from '@lib/helpers/font_weight_to_string'
 import { fontSelectionState } from '@state/atoms'
 import data from 'fonts.yaml'
+import produce from 'immer'
+import concat from 'lodash/concat'
+import filter from 'lodash/filter'
+import find from 'lodash/find'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 interface SpecimenPageProps {
@@ -20,6 +24,10 @@ function capitalize(str: string): string {
 export default function SpecimenPage({ slug }: SpecimenPageProps): JSX.Element {
   const [preview, ,] = useState(PREVIEWS.SENTENCE)
   const [fontSelection, setFontSelection] = useRecoilState(fontSelectionState)
+  const familyInSelection = useMemo(
+    () => find(fontSelection, (x) => x.family === slug),
+    [slug, fontSelection]
+  )
 
   return (
     <>
@@ -57,14 +65,44 @@ export default function SpecimenPage({ slug }: SpecimenPageProps): JSX.Element {
                     </span>
                   </div>
                   <Selector
-                    value={fontSelection.includes(font)}
+                    value={
+                      !!familyInSelection &&
+                      familyInSelection.fonts.includes(font)
+                    }
                     onClick={() => {
-                      if (fontSelection.includes(font)) {
+                      if (
+                        !!familyInSelection &&
+                        familyInSelection.fonts.includes(font)
+                      ) {
                         setFontSelection(
-                          fontSelection.filter((x) => x !== font)
+                          produce(fontSelection, () => {
+                            const newFonts = filter(
+                              familyInSelection.fonts,
+                              (x) => x !== font
+                            )
+
+                            return concat(
+                              filter(fontSelection, (x) => x.family !== slug),
+                              { family: slug, fonts: newFonts }
+                            )
+                          })
                         )
                       } else {
-                        setFontSelection([...fontSelection, font])
+                        setFontSelection(
+                          produce(fontSelection, (draft) => {
+                            if (!familyInSelection) {
+                              draft.push({ family: slug, fonts: [font] })
+                            } else {
+                              return concat(
+                                filter(draft, (x) => x.family !== slug),
+                                {
+                                  family: slug,
+                                  fonts: concat(familyInSelection.fonts, font),
+                                }
+                              )
+                            }
+                          })
+                        )
                       }
                     }}
                   />

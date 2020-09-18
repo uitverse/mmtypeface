@@ -1,4 +1,4 @@
-import { Font } from '@lib/interfaces'
+import type { FontFamily } from '@lib/interfaces'
 import { atom } from 'recoil'
 
 export const searchInputState = atom({
@@ -6,7 +6,7 @@ export const searchInputState = atom({
   default: '',
 })
 
-export const fontSelectionState = atom<Array<Font>>({
+export const fontSelectionState = atom<Array<FontFamily>>({
   key: 'fontSelectionState',
   default: [],
 })
