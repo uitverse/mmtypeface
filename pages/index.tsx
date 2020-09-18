@@ -4,7 +4,6 @@ import { PREVIEWS } from '@lib/constants'
 import { searchInputState } from '@state/atoms'
 import data from 'fonts.yaml'
 import Fuse from 'fuse.js'
-import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 
@@ -26,33 +25,21 @@ export default function HomePage(): JSX.Element {
   }, [searchText])
 
   return (
-    <>
-      <Head>
-        {fonts.map(({ family }) => (
-          <link
-            key={family}
-            rel="stylesheet"
-            type="text/css"
-            href={`/api?family=${family.replace(/\W/g, '+')}&display=block`}
-          />
-        ))}
-      </Head>
-      <main className="font-san shadow-border-top-brand">
-        <Nav index={0} />
-        <div className="w-full p-4 md:pt-3 md:mx-auto md:max-w-4xl lg:max-w-screen-xl">
-          <div className="flex flex-wrap -mx-2 -my-1 overflow-hidden">
-            {fonts.map(({ family, author, fonts }) => (
-              <InfoCard
-                key={family}
-                family={family}
-                author={author}
-                fonts={fonts}
-                preview={preview}
-              />
-            ))}
-          </div>
+    <main className="font-san shadow-border-top-brand">
+      <Nav index={0} />
+      <div className="w-full p-4 md:pt-3 md:mx-auto md:max-w-4xl lg:max-w-screen-xl">
+        <div className="flex flex-wrap -mx-2 -my-1 overflow-hidden">
+          {fonts.map(({ family, author, fonts }) => (
+            <InfoCard
+              key={family}
+              family={family}
+              author={author}
+              fonts={fonts}
+              preview={preview}
+            />
+          ))}
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   )
 }

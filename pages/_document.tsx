@@ -1,3 +1,4 @@
+import fonts from 'fonts.yaml'
 import Document, {
   DocumentContext,
   DocumentInitialProps,
@@ -21,6 +22,14 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta name="theme-color" content="#d63447" />
+          {fonts.map(({ family }) => (
+            <link
+              key={family}
+              rel="stylesheet"
+              type="text/css"
+              href={`/api?family=${family.replace(/\W/g, '+')}&display=block`}
+            />
+          ))}
         </Head>
         <body>
           <Main />
