@@ -1,4 +1,4 @@
-import type { Display } from '@lib/display'
+import type { Display } from '@lib/interfaces'
 import type { FontFamily, FontUrl } from '@lib/interfaces'
 
 export default function transform(

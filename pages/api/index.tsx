@@ -1,5 +1,6 @@
 import decode from '@lib/decode'
-import { Display, isDisplay } from '@lib/display'
+import { isDisplay } from '@lib/helpers/is_display'
+import type { Display } from '@lib/interfaces'
 import search from '@lib/search'
 import transform from '@lib/transform'
 import data from 'fonts.yaml'

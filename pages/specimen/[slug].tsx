@@ -1,7 +1,7 @@
 import Nav from '@components/nav'
 import Selector from '@components/selector'
 import { PREVIEWS } from '@lib/constants'
-import fontWeightToString from '@lib/font_weight_to_string'
+import fontWeightToString from '@lib/helpers/font_weight_to_string'
 import { fontSelectionState } from '@state/atoms'
 import data from 'fonts.yaml'
 import { GetStaticPaths, GetStaticProps } from 'next'

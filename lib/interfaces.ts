@@ -1,3 +1,5 @@
+import { RESOURCES } from '@lib/constants'
+
 export interface FontFamily<T extends unknown = undefined> {
   family: string
   author?: string
@@ -12,3 +14,5 @@ export interface FontUrl {
   format: 'woff' | 'woff2'
   path: string
 }
+
+export type Display = typeof RESOURCES.DISPLAY_VALUES[number]

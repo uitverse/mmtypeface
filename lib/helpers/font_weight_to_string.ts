@@ -1,14 +1,4 @@
-const definitions = {
-  '100': 'Thin',
-  '200': 'Extra-Light',
-  '300': 'Light',
-  '400': 'Regular',
-  '500': 'Medium',
-  '600': 'Semi-Bold',
-  '700': 'Bold',
-  '800': 'Extra-Bold',
-  '900': 'Black',
-}
+import { RESOURCES } from '@lib/constants'
 
 function hasOwnProperty<
   X extends Record<string, string>,
@@ -18,8 +8,8 @@ function hasOwnProperty<
 }
 
 export default function fontWeightToString(number: string): string {
-  if (hasOwnProperty(definitions, number)) {
-    return definitions[number]
+  if (hasOwnProperty(RESOURCES.FONT_WEIGHT_DEFINITIONS, number)) {
+    return RESOURCES.FONT_WEIGHT_DEFINITIONS[number]
   } else {
     return number
   }
