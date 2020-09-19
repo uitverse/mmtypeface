@@ -9,7 +9,7 @@ export default function InfoCard({
 }: FontFamily & { preview: string }): JSX.Element {
   return (
     <div className="block w-full px-2 my-2 overflow-hidden lg:min-h-50 md:w-1/2 lg:w-1/3 xl:w-1/4">
-      <Link href={`/specimen/${family.replace(/\W/g, '+')}`}>
+      <Link href={`/specimen/${family.replace(/\s/g, '+')}`}>
         <a className="block w-full h-full px-4 py-3 transition duration-300 ease-in-out border-2 border-solid rounded cursor-pointer border-gray-lighter hover:border-brand">
           <div className="flex flex-row items-center justify-between">
             <h2 className="font-medium leading-tight text-black xl:text-base">

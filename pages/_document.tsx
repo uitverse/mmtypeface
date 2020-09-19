@@ -27,7 +27,7 @@ export default class MyDocument extends Document {
               key={family}
               rel="stylesheet"
               type="text/css"
-              href={`/api?family=${family.replace(/\W/g, '+')}&display=block`}
+              href={`/api?family=${family.replace(/\s/g, '+')}&display=block`}
             />
           ))}
         </Head>

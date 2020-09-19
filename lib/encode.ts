@@ -12,7 +12,7 @@ export default function encode(input: Array<FontFamily>): string {
 }
 
 function singleEncode(input: FontFamily): string {
-  const start = `${input.family.replace(/\W/g, '+')}:ital,wght@`
+  const start = `${input.family.replace(/\s/g, '+')}:ital,wght@`
   const results: Array<string> = []
 
   for (const font of input.fonts) {

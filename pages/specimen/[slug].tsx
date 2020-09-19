@@ -39,7 +39,7 @@ export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
         <link
           rel="stylesheet"
           type="text/css"
-          href={`/api?family=${data.family.replace(/\W/g, '+')}&display=block`}
+          href={`/api?family=${data.family.replace(/\s/g, '+')}&display=block`}
         />
       </Head>
       <main className="font-san shadow-border-top-brand">
@@ -129,7 +129,7 @@ export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: fonts.map(({ family }) => ({
-      params: { slug: family.replace(/\W/g, '+') },
+      params: { slug: family.replace(/\s/g, '+') },
     })),
     fallback: false,
   }
