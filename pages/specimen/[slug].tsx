@@ -2,29 +2,35 @@ import Nav from '@components/nav'
 import Selector from '@components/selector'
 import { PREVIEWS } from '@lib/constants'
 import fontWeightToString from '@lib/helpers/font_weight_to_string'
-import { FontFamily } from '@lib/interfaces'
+import { Font, FontFamily } from '@lib/interfaces'
 import { fontSelectionState } from '@state/atoms'
 import fonts from 'fonts.yaml'
 import produce from 'immer'
+import capitalize from 'lodash/capitalize'
 import concat from 'lodash/concat'
 import filter from 'lodash/filter'
 import find from 'lodash/find'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useMemo, useState } from 'react'
+import { animated, useSpring } from 'react-spring'
 import { useRecoilState } from 'recoil'
 
 interface SpecimenPageProps {
   data: FontFamily<0> | null
 }
 
-function capitalize(str: string): string {
-  return str.charAt(0).toUpperCase() + str.slice(1)
-}
-
 export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
   const [preview, ,] = useState(PREVIEWS.SENTENCE)
   const [fontSelection, setFontSelection] = useRecoilState(fontSelectionState)
+  const animation = useSpring({
+    opacity: 1,
+    x: 0,
+    from: {
+      opacity: 0,
+      x: 20,
+    },
+  })
 
   if (!data) return <div>404</div>
 
@@ -32,6 +38,37 @@ export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
     () => find(fontSelection, (x) => x.family === data.family),
     [data, fontSelection]
   )
+
+  const selectFont = (font: Font) => {
+    if (!!familyInSelection && familyInSelection.fonts.includes(font)) {
+      setFontSelection(
+        produce(fontSelection, () => {
+          const newFonts = filter(familyInSelection.fonts, (x) => x !== font)
+
+          return concat(
+            filter(fontSelection, (x) => x.family !== data.family),
+            { family: data.family, fonts: newFonts }
+          )
+        })
+      )
+    } else {
+      setFontSelection(
+        produce(fontSelection, (draft) => {
+          if (!familyInSelection) {
+            draft.push({ family: data.family, fonts: [font] })
+          } else {
+            return concat(
+              filter(draft, (x) => x.family !== data.family),
+              {
+                family: data.family,
+                fonts: concat(familyInSelection.fonts, font),
+              }
+            )
+          }
+        })
+      )
+    }
+  }
 
   return (
     <>
@@ -51,75 +88,67 @@ export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
             </h2>
             <span className="text-gray-darkest">By {data.author}</span>
           </div>
-          {data.fonts.map((font) => (
-            <div
-              key={`${data.family}_${font.weight}_${font.style}`}
-              className="flex flex-col py-5 border-b-2 border-solid border-gray-lighter">
-              <div className="flex flex-col md:items-center md:justify-between md:flex-row">
-                <div className="flex flex-col mb-5 md:mb-0">
-                  <span className="text-sm text-gray-darker">
-                    {fontWeightToString(font.weight) +
-                      ' ' +
-                      capitalize(font.style)}
-                  </span>
-                  <span
-                    className="text-2xl text-black"
-                    style={{
-                      fontFamily: data.family,
-                      fontWeight: parseInt(font.weight),
-                      fontStyle: font.style,
-                    }}>
-                    {preview}
-                  </span>
-                </div>
-                <Selector
-                  value={
-                    !!familyInSelection &&
-                    familyInSelection.fonts.includes(font)
-                  }
-                  onClick={() => {
-                    if (
+          <div id="styles">
+            {data.fonts.map((font) => (
+              <div
+                key={`${data.family}_${font.weight}_${font.style}`}
+                className="flex flex-col py-5 border-b-2 border-solid border-gray-lighter">
+                <div className="flex flex-col md:items-center md:justify-between md:flex-row">
+                  <div className="flex flex-col mb-5 md:mb-0">
+                    <span className="mb-3 text-sm text-gray-darker">
+                      {fontWeightToString(font.weight) +
+                        ' ' +
+                        capitalize(font.style)}
+                    </span>
+                    <animated.div
+                      style={{
+                        ...animation,
+                        transform: animation.x.interpolate(
+                          (x) => `translate3d(0,${x}px,0)`
+                        ),
+                      }}>
+                      <span
+                        className="text-2xl text-black"
+                        style={{
+                          fontFamily: data.family,
+                          fontWeight: parseInt(font.weight),
+                          fontStyle: font.style,
+                        }}>
+                        {preview}
+                      </span>
+                    </animated.div>
+                  </div>
+                  <Selector
+                    value={
                       !!familyInSelection &&
                       familyInSelection.fonts.includes(font)
-                    ) {
-                      setFontSelection(
-                        produce(fontSelection, () => {
-                          const newFonts = filter(
-                            familyInSelection.fonts,
-                            (x) => x !== font
-                          )
-
-                          return concat(
-                            filter(
-                              fontSelection,
-                              (x) => x.family !== data.family
-                            ),
-                            { family: data.family, fonts: newFonts }
-                          )
-                        })
-                      )
-                    } else {
-                      setFontSelection(
-                        produce(fontSelection, (draft) => {
-                          if (!familyInSelection) {
-                            draft.push({ family: data.family, fonts: [font] })
-                          } else {
-                            return concat(
-                              filter(draft, (x) => x.family !== data.family),
-                              {
-                                family: data.family,
-                                fonts: concat(familyInSelection.fonts, font),
-                              }
-                            )
-                          }
-                        })
-                      )
                     }
-                  }}
-                />
+                    onClick={() => {
+                      selectFont(font)
+                    }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+          <div id="glyphs">
+            <h3 className="my-5 text-2xl font-semibold">Glyphs</h3>
+            <div
+              className="border-t-2 border-l-2 border-solid border-gray-light"
+              style={{
+                fontFamily: data.family,
+              }}>
+              <div className="grid grid-cols-auto">
+                {PREVIEWS.GLYPHS.split('').map((a) => (
+                  <div
+                    key={a}
+                    className="box-content flex items-center justify-center w-10 h-10 overflow-hidden border-b-2 border-r-2 border-solid border-gray">
+                    <span className="text-lg text-black">{a}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </main>
     </>

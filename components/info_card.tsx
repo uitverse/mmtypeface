@@ -1,5 +1,6 @@
 import type { FontFamily } from '@lib/interfaces'
 import Link from 'next/link'
+import { animated, useSpring } from 'react-spring'
 
 export default function InfoCard({
   family,
@@ -7,6 +8,16 @@ export default function InfoCard({
   author,
   preview,
 }: FontFamily & { preview: string }): JSX.Element {
+  const { opacity, x } = useSpring({
+    friction: 0,
+    opacity: 1,
+    x: 0,
+    from: {
+      opacity: 0,
+      x: 20,
+    },
+  })
+
   return (
     <div className="block w-full px-2 my-2 overflow-hidden lg:min-h-50 md:w-1/2 lg:w-1/3 xl:w-1/4">
       <Link href={`/specimen/${family.replace(/\s/g, '+')}`}>
@@ -22,13 +33,15 @@ export default function InfoCard({
           <span className="text-sm leading-tight text-gray-darkest">
             {author}
           </span>
-          <div
+          <animated.div
             className="my-3 text-xl"
             style={{
               fontFamily: family,
+              opacity,
+              transform: x.interpolate((x) => `translate3d(0,${x}px,0)`),
             }}>
             {preview}
-          </div>
+          </animated.div>
         </a>
       </Link>
     </div>

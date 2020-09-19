@@ -50,6 +50,9 @@ module.exports = {
         'border-bottom-gray': '0 -2px 0 #e7e5e5 inset',
         'border-top-brand': '0 2px 0 #d63447 inset',
       },
+      gridTemplateColumns: {
+        auto: 'repeat(auto-fill, minmax(2.5rem, 1fr))',
+      },
       rotate: {
         '-3': '-3deg',
       },
