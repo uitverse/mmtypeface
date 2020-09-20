@@ -1,3 +1,4 @@
+import GlyphsTable from '@components/glyphs_table'
 import Nav from '@components/nav'
 import Selector from '@components/selector'
 import { PREVIEWS } from '@lib/constants'
@@ -79,7 +80,7 @@ export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
           href={`/api?family=${data.family.replace(/\s/g, '+')}&display=block`}
         />
       </Head>
-      <main className="font-san shadow-border-top-brand">
+      <main className="shadow-border-top-brand">
         <Nav index={2} />
         <div className="w-full p-4 md:pt-3 md:mx-auto md:max-w-4xl lg:max-w-screen-xl">
           <div className="my-5">
@@ -133,21 +134,7 @@ export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
           </div>
           <div id="glyphs">
             <h3 className="my-5 text-2xl font-semibold">Glyphs</h3>
-            <div
-              className="border-t-2 border-l-2 border-solid border-gray-light"
-              style={{
-                fontFamily: data.family,
-              }}>
-              <div className="grid grid-cols-auto">
-                {PREVIEWS.GLYPHS.split('').map((a) => (
-                  <div
-                    key={a}
-                    className="box-content flex items-center justify-center w-10 h-10 overflow-hidden border-b-2 border-r-2 border-solid border-gray">
-                    <span className="text-lg text-black">{a}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <GlyphsTable fontFamily={data.family} glyphs={PREVIEWS.GLYPHS} />
           </div>
         </div>
       </main>

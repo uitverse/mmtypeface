@@ -26,7 +26,7 @@ export default function InfoCard({
             <h2 className="font-medium leading-tight text-black xl:text-base">
               {family}
             </h2>
-            <span className="px-2 font-mono text-xs rounded-full text-info-dark bg-info-light">
+            <span className="px-2 text-xs rounded-full text-info-dark bg-info-light">
               {fonts.length} Styles
             </span>
           </div>

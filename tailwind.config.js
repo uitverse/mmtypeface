@@ -43,8 +43,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
-        mono: ['Source Code Pro', 'monospace'],
+        display: ['Oswald', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
       },
       boxShadow: {
         'border-bottom-gray': '0 -2px 0 #e7e5e5 inset',
