@@ -23,7 +23,7 @@ export default function InfoCard({
       <Link href={`/specimen/${family.replace(/\s/g, '+')}`}>
         <a className="block w-full h-full px-4 py-3 transition duration-300 ease-in-out border-2 border-solid rounded cursor-pointer border-gray-lighter hover:border-brand">
           <div className="flex flex-row items-center justify-between">
-            <h2 className="font-medium leading-tight text-black xl:text-base">
+            <h2 className="text-lg font-bold leading-tight text-black">
               {family}
             </h2>
             <span className="px-2 text-xs rounded-full text-info-dark bg-info-light">

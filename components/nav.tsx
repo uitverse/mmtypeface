@@ -1,4 +1,5 @@
-import { encodedFontSelectionState, searchInputState } from '@state/atoms'
+import { searchInputState } from '@state/atoms'
+import { encodedFontSelectionState } from '@state/selectors'
 import cn from 'classnames'
 import Link from 'next/link'
 import { ChangeEvent, useEffect } from 'react'
@@ -33,7 +34,7 @@ export default function Nav({ index }: { index: number }): JSX.Element {
             <div className="flex-1 flex-shrink-0 hidden md:block">
               <label
                 htmlFor="search"
-                className="flex flex-row items-center px-1 py-2 my-4 transition duration-300 ease-in-out border-2 border-solid rounded my-2px -mt2px border-gray-lighter bg-gray-lightest focus-within:bg-white focus-within:border-brand">
+                className="flex flex-row items-center p-1 my-4 transition duration-300 ease-in-out border-2 border-solid rounded my-2px -mt2px border-gray-lighter bg-gray-lightest focus-within:bg-white focus-within:border-brand">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
