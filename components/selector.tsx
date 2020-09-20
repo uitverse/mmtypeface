@@ -11,10 +11,10 @@ export default function Selector({
     <button
       onClick={onClick}
       className={cn(
-        'w-32 flex flex-row items-center justify-center px-3 py-2 font-medium transition duration-300 ease-in-out border-2 border-transparent border-solid rounded md:bg-transparent focus:outline-none',
+        'w-32 flex flex-row items-center justify-center px-2 py-2 md:py-1 font-medium transition duration-100 ease-in-out border-2 border-transparent border-solid rounded md:bg-transparent focus:outline-none',
         {
-          'text-danger-dark hover:bg-danger-light focus:border-danger bg-danger-light': value,
-          'text-info-dark hover:bg-info-light focus:border-info bg-info-light': !value,
+          'text-danger-dark hover:text-white hover:bg-danger border-danger': value,
+          'text-cta-dark hover:text-white hover:bg-cta border-cta': !value,
         }
       )}>
       {value ? (
@@ -46,7 +46,7 @@ export default function Selector({
           />
         </svg>
       )}
-      {value ? 'Remove' : 'Select'}
+      <span className="uppercase">{value ? 'Remove' : 'Select'}</span>
     </button>
   )
 }

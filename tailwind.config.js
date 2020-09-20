@@ -43,8 +43,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        display: ['Oswald', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        head: ['Oswald', 'sans-serif'],
+        body: ['Metropolis', 'sans-serif'],
       },
       boxShadow: {
         'border-bottom-gray': '0 -2px 0 #e7e5e5 inset',

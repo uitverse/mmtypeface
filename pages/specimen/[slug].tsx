@@ -11,6 +11,7 @@ import capitalize from 'lodash/capitalize'
 import concat from 'lodash/concat'
 import filter from 'lodash/filter'
 import find from 'lodash/find'
+import some from 'lodash/some'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useMemo, useState } from 'react'
@@ -41,14 +42,20 @@ export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
   )
 
   const selectFont = (font: Font) => {
-    if (!!familyInSelection && familyInSelection.fonts.includes(font)) {
+    if (!!familyInSelection && some(familyInSelection.fonts, font)) {
       setFontSelection(
-        produce(fontSelection, () => {
-          const newFonts = filter(familyInSelection.fonts, (x) => x !== font)
+        produce(fontSelection, (draft) => {
+          const newFonts = filter(
+            familyInSelection.fonts,
+            (x) => x.style !== font.style || x.weight !== font.weight
+          )
 
-          return concat(
-            filter(fontSelection, (x) => x.family !== data.family),
-            { family: data.family, fonts: newFonts }
+          return filter(
+            concat(
+              filter(draft, (x) => x.family !== data.family),
+              { family: data.family, fonts: newFonts }
+            ),
+            (x) => x.fonts.length !== 0
           )
         })
       )
@@ -121,8 +128,7 @@ export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
                   </div>
                   <Selector
                     value={
-                      !!familyInSelection &&
-                      familyInSelection.fonts.includes(font)
+                      !!familyInSelection && some(familyInSelection.fonts, font)
                     }
                     onClick={() => {
                       selectFont(font)
