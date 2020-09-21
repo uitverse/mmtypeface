@@ -1,6 +1,6 @@
 import type { FontFamily } from '@lib/interfaces'
 import Link from 'next/link'
-import { animated, useSpring } from 'react-spring'
+import { animated, config as springConfig, useSpring } from 'react-spring'
 
 export default function InfoCard({
   family,
@@ -9,7 +9,7 @@ export default function InfoCard({
   preview,
 }: FontFamily & { preview: string }): JSX.Element {
   const { opacity, x } = useSpring({
-    friction: 0,
+    config: springConfig.stiff,
     opacity: 1,
     x: 0,
     from: {

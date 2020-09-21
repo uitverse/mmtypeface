@@ -1,20 +1,20 @@
 import { searchInputState } from '@state/atoms'
 import { encodedFontSelectionState } from '@state/selectors'
-import cn from 'classnames'
 import Link from 'next/link'
 import { ChangeEvent, useEffect, useState } from 'react'
+import { animated, config as springConfig, useTransition } from 'react-spring'
 import { useRecoilState, useRecoilValue } from 'recoil'
 
 export default function Nav({ index }: { index: number }): JSX.Element {
   const [showModal, setShowModal] = useState(false)
   const [searchText, setSearchText] = useRecoilState(searchInputState)
   const encodedSelection = useRecoilValue(encodedFontSelectionState)
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setShowModal(true)
-  //   }, 1000)
-  // }, [])
+  const transitions = useTransition(showModal, null, {
+    config: springConfig.stiff,
+    from: { opacity: 0, transform: `scale(0)` },
+    enter: { opacity: 1, transform: `scale(1)` },
+    leave: { opacity: 0, transform: `scale(0)` },
+  })
 
   useEffect(() => {
     console.log(encodedSelection)
@@ -26,14 +26,28 @@ export default function Nav({ index }: { index: number }): JSX.Element {
 
   return (
     <>
-      <div
-        className={cn(
-          'fixed z-50 w-full h-full overflow-hidden bg-opacity-50 bg-black top-0 bottom-0 right-0 left-0',
-          {
-            flex: showModal,
-            hidden: !showModal,
-          }
-        )}></div>
+      {transitions.map(({ item, key, props }) =>
+        item ? (
+          <animated.div
+            key={key}
+            onClick={() => {
+              setShowModal(false)
+            }}
+            className="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center w-full h-full p-3 overflow-hidden bg-black bg-opacity-50 md:p-20"
+            style={{
+              // eslint-disable-next-line
+              opacity: props.opacity,
+            }}>
+            <animated.div
+              className="w-full h-full max-w-full p-5 bg-white rounded-lg md:max-w-screen-sm"
+              style={props}>
+              <h1 className="text-xl font-bold leading-tight">
+                Selected Families
+              </h1>
+            </animated.div>
+          </animated.div>
+        ) : null
+      )}
       <div className="flex flex-col w-full shadow-border-top-brand">
         <nav className="shadow-border-bottom-gray">
           <div className="flex flex-row items-center justify-between w-full px-4 mx-auto md:max-w-4xl lg:max-w-screen-xl">
@@ -75,7 +89,14 @@ export default function Nav({ index }: { index: number }): JSX.Element {
                 </label>
               </div>
             ) : null}
-            <div className="flex items-center justify-end flex-1 flex-shrink-0"></div>
+            <div className="flex items-center justify-end flex-1 flex-shrink-0">
+              <button
+                onClick={() => {
+                  setShowModal(true)
+                }}>
+                Selection
+              </button>
+            </div>
           </div>
         </nav>
         {index === 0 ? (

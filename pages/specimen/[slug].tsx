@@ -15,7 +15,7 @@ import some from 'lodash/some'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useMemo, useState } from 'react'
-import { animated, useSpring } from 'react-spring'
+import { animated, config as springConfig, useSpring } from 'react-spring'
 import { useRecoilState } from 'recoil'
 
 interface SpecimenPageProps {
@@ -26,6 +26,7 @@ export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
   const [preview, ,] = useState(PREVIEWS.SENTENCE)
   const [fontSelection, setFontSelection] = useRecoilState(fontSelectionState)
   const animation = useSpring({
+    config: springConfig.stiff,
     opacity: 1,
     x: 0,
     from: {
