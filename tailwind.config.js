@@ -44,7 +44,7 @@ module.exports = {
     extend: {
       fontFamily: {
         head: ['Oswald', 'sans-serif'],
-        body: ['Red Hat Text', 'sans-serif'],
+        body: ['Raleway', 'sans-serif'],
       },
       boxShadow: {
         'border-bottom-gray': '0 -2px 0 #e7e5e5 inset',
