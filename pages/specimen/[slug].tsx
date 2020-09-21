@@ -87,7 +87,7 @@ export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
           href={`/api?family=${data.family.replace(/\s/g, '+')}&display=block`}
         />
       </Head>
-      <main className="shadow-border-top-brand">
+      <main>
         <Nav index={2} />
         <div className="w-full p-4 md:pt-3 md:mx-auto md:max-w-4xl lg:max-w-screen-xl">
           <div className="my-5">
@@ -103,7 +103,7 @@ export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
                 className="flex flex-col py-5 border-b-2 border-solid border-gray-lighter">
                 <div className="flex flex-col md:items-center md:justify-between md:flex-row">
                   <div className="flex flex-col mb-5 md:mb-0">
-                    <span className="mb-3 text-sm text-gray-darker">
+                    <span className="mb-3 text-gray-darker">
                       {fontWeightToString(font.weight) +
                         ' ' +
                         capitalize(font.style)}

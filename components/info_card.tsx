@@ -26,13 +26,11 @@ export default function InfoCard({
             <h2 className="text-lg font-bold leading-tight text-black">
               {family}
             </h2>
-            <span className="px-2 text-xs rounded-full text-info-dark bg-info-light">
+            <span className="px-2 text-xs font-medium rounded-full text-info-dark bg-info-light">
               {fonts.length} Styles
             </span>
           </div>
-          <span className="text-sm leading-tight text-gray-darkest">
-            {author}
-          </span>
+          <span className="text-gray-darkest">{author}</span>
           <animated.div
             className="my-3 text-xl"
             style={{

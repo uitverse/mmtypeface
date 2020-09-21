@@ -25,7 +25,7 @@ export default function HomePage(): JSX.Element {
   }, [searchText])
 
   return (
-    <main className="shadow-border-top-brand">
+    <main>
       <Nav index={0} />
       <div className="w-full p-4 md:pt-3 md:mx-auto md:max-w-4xl lg:max-w-screen-xl">
         <div className="flex flex-wrap -mx-2 -my-1 overflow-hidden">
