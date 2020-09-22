@@ -7,6 +7,7 @@ import { Font, FontFamily } from '@lib/interfaces'
 import { fontSelectionState } from '@state/atoms'
 import fonts from 'fonts.yaml'
 import produce from 'immer'
+import { useAtom } from 'jotai'
 import capitalize from 'lodash/capitalize'
 import concat from 'lodash/concat'
 import filter from 'lodash/filter'
@@ -16,7 +17,6 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useMemo, useState } from 'react'
 import { animated, config as springConfig, useSpring } from 'react-spring'
-import { useRecoilState } from 'recoil'
 
 interface SpecimenPageProps {
   data: FontFamily<0> | null
@@ -24,7 +24,7 @@ interface SpecimenPageProps {
 
 export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
   const [preview, ,] = useState(PREVIEWS.SENTENCE)
-  const [fontSelection, setFontSelection] = useRecoilState(fontSelectionState)
+  const [fontSelection, setFontSelection] = useAtom(fontSelectionState)
   const animation = useSpring({
     config: springConfig.stiff,
     opacity: 1,

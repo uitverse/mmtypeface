@@ -4,8 +4,8 @@ import { PREVIEWS } from '@lib/constants'
 import { searchInputState } from '@state/atoms'
 import data from 'fonts.yaml'
 import Fuse from 'fuse.js'
+import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 
 export default function HomePage(): JSX.Element {
   const fuse = new Fuse(data, {
@@ -14,7 +14,7 @@ export default function HomePage(): JSX.Element {
   })
   const [preview, ,] = useState(PREVIEWS.SENTENCE)
   const [fonts, setFonts] = useState(data)
-  const searchText = useRecoilValue(searchInputState)
+  const [searchText, ,] = useAtom(searchInputState)
 
   useEffect(() => {
     if (searchText.trim().length === 0) {

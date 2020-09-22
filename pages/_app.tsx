@@ -1,13 +1,13 @@
 import '@styles/tailwind.css'
 import '@styles/globals.css'
 
+import { Provider as JotaiRoot } from 'jotai'
 import { AppProps } from 'next/app'
-import { RecoilRoot } from 'recoil'
 
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <RecoilRoot>
+    <JotaiRoot>
       <Component {...pageProps} />
-    </RecoilRoot>
+    </JotaiRoot>
   )
 }

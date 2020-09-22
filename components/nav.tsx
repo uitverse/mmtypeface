@@ -1,14 +1,14 @@
 import { searchInputState } from '@state/atoms'
-import { encodedFontSelectionState } from '@state/selectors'
+import { encodedFontSelectionState } from '@state/atoms'
+import { useAtom } from 'jotai'
 import Link from 'next/link'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { animated, config as springConfig, useTransition } from 'react-spring'
-import { useRecoilState, useRecoilValue } from 'recoil'
 
 export default function Nav({ index }: { index: number }): JSX.Element {
   const [showModal, setShowModal] = useState(false)
-  const [searchText, setSearchText] = useRecoilState(searchInputState)
-  const encodedSelection = useRecoilValue(encodedFontSelectionState)
+  const [searchText, setSearchText] = useAtom(searchInputState)
+  const [encodedSelection, ,] = useAtom(encodedFontSelectionState)
   const transitions = useTransition(showModal, null, {
     config: springConfig.stiff,
     from: { opacity: 0, transform: `scale(0)` },

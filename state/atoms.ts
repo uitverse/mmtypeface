@@ -1,12 +1,11 @@
+import encode from '@lib/encode'
 import type { FontFamily } from '@lib/interfaces'
-import { atom } from 'recoil'
+import { atom } from 'jotai'
 
-export const searchInputState = atom({
-  key: 'searchInputState',
-  default: '',
-})
+export const searchInputState = atom('')
 
-export const fontSelectionState = atom<Array<FontFamily>>({
-  key: 'fontSelectionState',
-  default: [],
-})
+export const fontSelectionState = atom<Array<FontFamily>>([])
+
+export const encodedFontSelectionState = atom((get) =>
+  encode(get(fontSelectionState))
+)
