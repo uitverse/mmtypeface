@@ -5,7 +5,7 @@ import search from '@lib/search'
 import transform from '@lib/transform'
 import data from 'fonts.yaml'
 import LRUCache from 'lru-cache'
-import { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 const cache = new LRUCache({
   max: 100,
