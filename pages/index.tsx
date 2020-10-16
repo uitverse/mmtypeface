@@ -1,3 +1,4 @@
+import Footer from '@components/footer'
 import InfoCard from '@components/info_card'
 import Nav from '@components/nav'
 import { PREVIEWS } from '@lib/constants'
@@ -39,6 +40,8 @@ export default function HomePage(): JSX.Element {
             />
           ))}
         </div>
+        <div className="h-8" />
+        <Footer />
       </div>
     </main>
   )

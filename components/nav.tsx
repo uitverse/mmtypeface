@@ -1,5 +1,4 @@
-import { searchInputState } from '@state/atoms'
-import { encodedFontSelectionState } from '@state/atoms'
+import { encodedFontSelectionState, searchInputState } from '@state/atoms'
 import { useAtom } from 'jotai'
 import Link from 'next/link'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -39,6 +38,9 @@ export default function Nav({ index }: { index: number }): JSX.Element {
               opacity: props.opacity,
             }}>
             <animated.div
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
               className="w-full h-full max-w-full p-5 bg-white rounded-lg md:max-w-screen-sm"
               style={props}>
               <h1 className="text-xl font-bold leading-tight">

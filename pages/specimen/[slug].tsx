@@ -1,3 +1,4 @@
+import Footer from '@components/footer'
 import GlyphsTable from '@components/glyphs_table'
 import Nav from '@components/nav'
 import Selector from '@components/selector'
@@ -143,6 +144,8 @@ export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
             <h3 className="my-5 text-2xl font-semibold">Glyphs</h3>
             <GlyphsTable fontFamily={data.family} glyphs={PREVIEWS.GLYPHS} />
           </div>
+          <div className="h-8" />
+          <Footer />
         </div>
       </main>
     </>
