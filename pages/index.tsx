@@ -1,6 +1,6 @@
-import Footer from '@components/footer'
-import InfoCard from '@components/info_card'
-import Nav from '@components/nav'
+import Footer from '@components/Footer'
+import InfoCard from '@components/InfoCard'
+import NavBar from '@components/NavBar'
 import { PREVIEWS } from '@lib/constants'
 import { searchInputState } from '@state/atoms'
 import data from 'fonts.yaml'
@@ -13,8 +13,8 @@ export default function HomePage(): JSX.Element {
     threshold: 0.4,
     keys: ['family'],
   })
-  const [preview, ,] = useState(PREVIEWS.SENTENCE)
   const [fonts, setFonts] = useState(data)
+  const [preview, ,] = useState(PREVIEWS.SENTENCE)
   const [searchText, ,] = useAtom(searchInputState)
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function HomePage(): JSX.Element {
 
   return (
     <main>
-      <Nav index={0} />
+      <NavBar index={0} />
       <div className="w-full p-4 md:pt-3 md:mx-auto md:max-w-4xl lg:max-w-screen-xl">
         <div className="flex flex-wrap -mx-2 -my-1 overflow-hidden">
           {fonts.map(({ family, author, fonts }) => (

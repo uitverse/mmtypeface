@@ -1,9 +1,9 @@
-import Footer from '@components/footer'
-import GlyphsTable from '@components/glyphs_table'
-import Nav from '@components/nav'
-import Selector from '@components/selector'
+import Footer from '@components/Footer'
+import GlyphsTable from '@components/GlyphsTable'
+import NavBar from '@components/NavBar'
+import Selector from '@components/Selector'
 import { PREVIEWS } from '@lib/constants'
-import fontWeightToString from '@lib/helpers/font_weight_to_string'
+import fontWeightToString from '@lib/helpers/fontWeightToString'
 import { Font, FontFamily } from '@lib/interfaces'
 import { fontSelectionState } from '@state/atoms'
 import fonts from 'fonts.yaml'
@@ -90,7 +90,7 @@ export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
         />
       </Head>
       <main>
-        <Nav index={2} />
+        <NavBar index={2} />
         <div className="w-full p-4 md:pt-3 md:mx-auto md:max-w-4xl lg:max-w-screen-xl">
           <div className="my-5">
             <h2 className="text-3xl font-bold leading-tight tracking-wide text-black">

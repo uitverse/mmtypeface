@@ -1,5 +1,5 @@
 import decode from '@lib/decode'
-import isDisplay from '@lib/helpers/is_display'
+import isDisplay from '@lib/helpers/isDisplay'
 import type { Display } from '@lib/interfaces'
 import search from '@lib/search'
 import transform from '@lib/transform'

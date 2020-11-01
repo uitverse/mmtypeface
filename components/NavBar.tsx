@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { animated, config as springConfig, useTransition } from 'react-spring'
 
-export default function Nav({ index }: { index: number }): JSX.Element {
+export default function NavBar({ index }: { index: number }): JSX.Element {
   const [showModal, setShowModal] = useState(false)
   const [searchText, setSearchText] = useAtom(searchInputState)
   const [encodedSelection, ,] = useAtom(encodedFontSelectionState)
