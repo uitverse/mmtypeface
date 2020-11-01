@@ -1,21 +1,22 @@
-import Footer from '@components/Footer'
-import InfoCard from '@components/InfoCard'
-import NavBar from '@components/NavBar'
+import { Footer } from '@components/Footer'
+import { InfoCard } from '@components/InfoCard'
+import { NavBar } from '@components/NavBar'
 import { PREVIEWS } from '@lib/constants'
-import { searchInputState } from '@state/atoms'
+import { searchInput } from '@state/atoms'
 import data from 'fonts.yaml'
 import Fuse from 'fuse.js'
 import { useAtom } from 'jotai'
+import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 
-export default function HomePage(): JSX.Element {
+const IndexPage: NextPage = () => {
   const fuse = new Fuse(data, {
     threshold: 0.4,
     keys: ['family'],
   })
   const [fonts, setFonts] = useState(data)
-  const [preview, ,] = useState(PREVIEWS.SENTENCE)
-  const [searchText, ,] = useAtom(searchInputState)
+  const [searchText] = useAtom(searchInput)
+  const [preview] = useState(PREVIEWS.SENTENCE)
 
   useEffect(() => {
     if (searchText.trim().length === 0) {
@@ -46,3 +47,5 @@ export default function HomePage(): JSX.Element {
     </main>
   )
 }
+
+export default IndexPage

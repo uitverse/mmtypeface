@@ -1,13 +1,19 @@
-import { encodedFontSelectionState, searchInputState } from '@state/atoms'
+import { encodedSelectedFonts, searchInput } from '@state/atoms'
 import { useAtom } from 'jotai'
 import Link from 'next/link'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { animated, config as springConfig, useTransition } from 'react-spring'
 
-export default function NavBar({ index }: { index: number }): JSX.Element {
+import { SelectionModal } from './SelectionModal'
+
+interface Props {
+  index: number
+}
+
+export const NavBar: React.FC<Props> = ({ index }: Props) => {
   const [showModal, setShowModal] = useState(false)
-  const [searchText, setSearchText] = useAtom(searchInputState)
-  const [encodedSelection, ,] = useAtom(encodedFontSelectionState)
+  const [searchText, setSearchText] = useAtom(searchInput)
+  const [encodedSelection] = useAtom(encodedSelectedFonts)
   const transitions = useTransition(showModal, null, {
     config: springConfig.stiff,
     from: { opacity: 0, transform: `scale(0)` },
@@ -43,9 +49,7 @@ export default function NavBar({ index }: { index: number }): JSX.Element {
               }}
               className="w-full h-full max-w-full p-5 bg-white rounded-lg md:max-w-screen-sm"
               style={props}>
-              <h1 className="text-xl font-bold leading-tight">
-                Selected Families
-              </h1>
+              <SelectionModal />
             </animated.div>
           </animated.div>
         ) : null

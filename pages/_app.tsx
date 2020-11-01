@@ -4,10 +4,12 @@ import '@styles/globals.css'
 import { Provider as JotaiRoot } from 'jotai'
 import { AppProps } from 'next/app'
 
-export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <JotaiRoot>
       <Component {...pageProps} />
     </JotaiRoot>
   )
 }
+
+export default App

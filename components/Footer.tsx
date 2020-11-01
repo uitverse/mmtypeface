@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default function Footer(): JSX.Element {
+export const Footer: React.FC = () => {
   return (
     <footer className="flex flex-row items-center justify-between py-2 my-2 border-t-2 border-solid border-gray-lighter">
       <div>

@@ -1,12 +1,11 @@
 import cn from 'classnames'
 
-export default function Selector({
-  value,
-  onClick,
-}: {
+interface Props {
   value: boolean
   onClick: () => void
-}): JSX.Element {
+}
+
+export const Selector: React.FC<Props> = ({ value, onClick }: Props) => {
   return (
     <button
       onClick={onClick}

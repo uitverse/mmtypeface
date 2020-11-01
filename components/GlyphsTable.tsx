@@ -1,10 +1,9 @@
-export default function GlyphsTable({
-  glyphs,
-  fontFamily,
-}: {
+interface Props {
   glyphs: string
   fontFamily: string
-}): JSX.Element {
+}
+
+export const GlyphsTable: React.FC<Props> = ({ fontFamily, glyphs }: Props) => {
   return (
     <div
       className="border-t-2 border-l-2 border-solid border-gray-light"

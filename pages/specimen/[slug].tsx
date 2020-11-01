@@ -1,11 +1,11 @@
-import Footer from '@components/Footer'
-import GlyphsTable from '@components/GlyphsTable'
-import NavBar from '@components/NavBar'
-import Selector from '@components/Selector'
+import { Footer } from '@components/Footer'
+import { GlyphsTable } from '@components/GlyphsTable'
+import { NavBar } from '@components/NavBar'
+import { Selector } from '@components/Selector'
 import { PREVIEWS } from '@lib/constants'
 import fontWeightToString from '@lib/helpers/fontWeightToString'
 import { Font, FontFamily } from '@lib/interfaces'
-import { fontSelectionState } from '@state/atoms'
+import { selectedFonts } from '@state/atoms'
 import fonts from 'fonts.yaml'
 import produce from 'immer'
 import { useAtom } from 'jotai'
@@ -14,18 +14,18 @@ import concat from 'lodash/concat'
 import filter from 'lodash/filter'
 import find from 'lodash/find'
 import some from 'lodash/some'
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useMemo, useState } from 'react'
 import { animated, config as springConfig, useSpring } from 'react-spring'
 
-interface SpecimenPageProps {
+interface Props {
   data: FontFamily<0> | null
 }
 
-export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
-  const [preview, ,] = useState(PREVIEWS.SENTENCE)
-  const [fontSelection, setFontSelection] = useAtom(fontSelectionState)
+const SpecimenPage: NextPage<Props> = ({ data }) => {
+  const [preview] = useState(PREVIEWS.SENTENCE)
+  const [fontSelection, setFontSelection] = useAtom(selectedFonts)
   const animation = useSpring({
     config: springConfig.stiff,
     opacity: 1,
@@ -152,6 +152,8 @@ export default function SpecimenPage({ data }: SpecimenPageProps): JSX.Element {
   )
 }
 
+export default SpecimenPage
+
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: fonts.map(({ family }) => ({
@@ -161,9 +163,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<SpecimenPageProps> = async ({
-  params,
-}) => {
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   try {
     return {
       props: {

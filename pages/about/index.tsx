@@ -1,6 +1,7 @@
-import NavBar from '@components/NavBar'
+import { NavBar } from '@components/NavBar'
+import { NextPage } from 'next'
 
-export default function AboutPage(): JSX.Element {
+const AboutPage: NextPage = () => {
   return (
     <main>
       <NavBar index={1} />
@@ -10,3 +11,5 @@ export default function AboutPage(): JSX.Element {
     </main>
   )
 }
+
+export default AboutPage
