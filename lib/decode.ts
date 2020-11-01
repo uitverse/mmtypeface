@@ -1,4 +1,4 @@
-import type { Font, FontFamily } from '@lib/interfaces'
+import type { Font, FontFamily } from '@lib/types'
 
 export default function decode(
   input: string | Array<string>

@@ -1,5 +1,5 @@
-import type { Display } from '@lib/interfaces'
-import type { FontFamily, FontUrl } from '@lib/interfaces'
+import type { Display } from '@lib/types'
+import type { FontFamily, FontUrl } from '@lib/types'
 
 export default function transform(
   tree: Array<FontFamily<0>>,

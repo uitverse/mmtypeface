@@ -1,4 +1,4 @@
-import { encodedSelectedFonts, searchInput } from '@state/atoms'
+import { encodedSelectedFonts, searchInput, selectedFonts } from '@state/atoms'
 import { useAtom } from 'jotai'
 import Link from 'next/link'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -13,6 +13,7 @@ interface Props {
 export const NavBar: React.FC<Props> = ({ index }: Props) => {
   const [showModal, setShowModal] = useState(false)
   const [searchText, setSearchText] = useAtom(searchInput)
+  const [fontSelection] = useAtom(selectedFonts)
   const [encodedSelection] = useAtom(encodedSelectedFonts)
   const transitions = useTransition(showModal, null, {
     config: springConfig.stiff,
@@ -35,7 +36,7 @@ export const NavBar: React.FC<Props> = ({ index }: Props) => {
         item ? (
           <animated.div
             key={key}
-            onClick={() => {
+            onDoubleClick={() => {
               setShowModal(false)
             }}
             className="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center w-full h-full p-3 overflow-hidden bg-black bg-opacity-50 md:p-20"
@@ -47,9 +48,13 @@ export const NavBar: React.FC<Props> = ({ index }: Props) => {
               onClick={(e) => {
                 e.stopPropagation()
               }}
-              className="w-full h-full max-w-full p-5 bg-white rounded-lg md:max-w-screen-sm"
+              className="w-full p-5 bg-white rounded-lg md:max-w-screen-sm md:h-auto"
               style={props}>
-              <SelectionModal />
+              <SelectionModal
+                onClose={() => {
+                  setShowModal(false)
+                }}
+              />
             </animated.div>
           </animated.div>
         ) : null
@@ -97,10 +102,33 @@ export const NavBar: React.FC<Props> = ({ index }: Props) => {
             ) : null}
             <div className="flex items-center justify-end flex-1 flex-shrink-0">
               <button
+                className="focus:outline-none"
                 onClick={() => {
                   setShowModal(true)
                 }}>
-                Selection
+                {fontSelection.length === 0 ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className="w-8 h-8">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="w-8 h-8 text-brand">
+                    <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM14 11a1 1 0 011 1v1h1a1 1 0 110 2h-1v1a1 1 0 11-2 0v-1h-1a1 1 0 110-2h1v-1a1 1 0 011-1z" />
+                  </svg>
+                )}
               </button>
             </div>
           </div>

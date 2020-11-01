@@ -1,4 +1,4 @@
-import type { FontFamily } from '@lib/interfaces'
+import type { FontFamily } from '@lib/types'
 
 export default function* search(
   data: Array<FontFamily<0>>,

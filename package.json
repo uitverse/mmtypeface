@@ -38,6 +38,7 @@
     "tailwindcss": "^1.8.8"
   },
   "devDependencies": {
+    "@tailwindcss/custom-forms": "^0.2.1",
     "@types/classnames": "^2.2.10",
     "@types/lodash": "^4.14.161",
     "@types/lru-cache": "^5.1.0",

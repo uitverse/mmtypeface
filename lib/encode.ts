@@ -1,4 +1,4 @@
-import type { FontFamily } from '@lib/interfaces'
+import type { FontFamily } from '@lib/types'
 import filter from 'lodash/filter'
 
 export default function encode(input: Array<FontFamily>): string {

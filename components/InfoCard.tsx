@@ -1,4 +1,4 @@
-import type { FontFamily } from '@lib/interfaces'
+import type { FontFamily } from '@lib/types'
 import Link from 'next/link'
 import { animated, config as springConfig, useSpring } from 'react-spring'
 
