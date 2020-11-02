@@ -15,6 +15,7 @@ import filter from 'lodash/filter'
 import find from 'lodash/find'
 import some from 'lodash/some'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import Error from 'next/error'
 import Head from 'next/head'
 import { useMemo, useState } from 'react'
 import { animated, config as springConfig, useSpring } from 'react-spring'
@@ -36,7 +37,7 @@ const SpecimenPage: NextPage<Props> = ({ data }) => {
     },
   })
 
-  if (!data) return <div>404</div>
+  if (!data) return <Error statusCode={500} />
 
   const familyInSelection = useMemo(
     () => find(fontSelection, (x) => x.family === data.family),
