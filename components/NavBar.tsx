@@ -1,7 +1,7 @@
-import { encodedSelectedFonts, searchInput, selectedFonts } from '@state/atoms'
+import { searchInput, selectedFonts } from '@state/atoms'
 import { useAtom } from 'jotai'
 import Link from 'next/link'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { animated, config as springConfig, useTransition } from 'react-spring'
 
 import { SelectionModal } from './SelectionModal'
@@ -14,17 +14,12 @@ export const NavBar: React.FC<Props> = ({ index }: Props) => {
   const [showModal, setShowModal] = useState(false)
   const [searchText, setSearchText] = useAtom(searchInput)
   const [fontSelection] = useAtom(selectedFonts)
-  const [encodedSelection] = useAtom(encodedSelectedFonts)
   const transitions = useTransition(showModal, null, {
     config: springConfig.stiff,
     from: { opacity: 0, transform: `scale(0)` },
     enter: { opacity: 1, transform: `scale(1)` },
     leave: { opacity: 0, transform: `scale(0)` },
   })
-
-  useEffect(() => {
-    console.log(encodedSelection)
-  }, [encodedSelection])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value)
