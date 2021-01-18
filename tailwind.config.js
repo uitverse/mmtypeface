@@ -1,5 +1,5 @@
 module.exports = {
-  purge: ['./pages/**/*.tsx'],
+  purge: ['./components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
   future: {
     purgeLayersByDefault: true,
     removeDeprecatedGapUtilities: true,
