@@ -3,7 +3,7 @@ import type { Font, FontFamily } from '@lib/types'
 export default function decode(
   input: string | Array<string>
 ): Array<FontFamily> {
-  /// this is to be able to catch circular/recursive input
+  // this is to be able to catch circular/recursive input
   try {
     if (input instanceof Array) {
       return JSON.parse(JSON.stringify(input.map(parse))) as Array<FontFamily>

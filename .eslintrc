@@ -24,5 +24,6 @@
   },
   "globals": {
     "React": "writable"
-  }
+  },
+  "ignorePatterns": "*.js"
 }
