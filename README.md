@@ -20,7 +20,7 @@ Please make sure your fonts are in the `woff` and `woff2` formats. Otherwise we 
 
 ### Is this a college project?
 
-Kinda. Credit for the idea goes to @heinthanth.
+Kinda. Credit for the idea goes to [@heinthanth](https://github.com/heinthanth).
 
 ## License
 
