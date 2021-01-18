@@ -39,7 +39,7 @@ The output will look something like,
 
 ### Why?
 
-Inspired by Google Fonts, this is an attempt to create a CDN to serve burmese fonts which Google Fonts won't. This is an alternative to MMWebFonts with proper support for multiple font weights.
+Inspired by Google Fonts, this is an attempt to create a CDN to serve burmese fonts which Google Fonts won't. This is an alternative to MMWebFonts with proper support for multiple font weights, font styles and font display properties.
 
 ### How?
 
