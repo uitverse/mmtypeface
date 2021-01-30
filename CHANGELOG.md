@@ -1,3 +1,7 @@
+# 1.0.3
+
+- Add meta tags for better SEO
+
 # 1.0.2
 
 - Add some docs to README.md
