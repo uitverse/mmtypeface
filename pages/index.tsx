@@ -1,6 +1,7 @@
 import { Footer } from '@components/Footer'
 import { InfoCard } from '@components/InfoCard'
 import { NavBar } from '@components/NavBar'
+import { SEO } from '@components/SEO'
 import { PREVIEWS } from '@lib/constants'
 import { searchInput } from '@state/atoms'
 import data from 'fonts.yaml'
@@ -28,6 +29,7 @@ const IndexPage: NextPage = () => {
 
   return (
     <main>
+      <SEO />
       <NavBar index={0} />
       <div className="w-full p-4 md:pt-3 md:mx-auto md:max-w-4xl lg:max-w-screen-xl">
         <div className="flex flex-wrap -mx-2 -my-1 overflow-hidden">
